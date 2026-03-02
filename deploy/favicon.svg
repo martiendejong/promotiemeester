@@ -1,0 +1,23 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 24 L5 14 L8 17.5 L11 11 L16 16 L21 11 L24 17.5 L27 14 L28 24 Z"
+        fill="url(#goldGradient)"
+        stroke="#D4AF37"
+        stroke-width="1"/>
+  <rect x="3" y="23" width="26" height="4" rx="1"
+        fill="url(#darkGold)"
+        stroke="#D4AF37"
+        stroke-width="0.75"/>
+  <circle cx="16" cy="12.5" r="2" fill="#FFD700">
+    <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FDB913;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="darkGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FDB913;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
