@@ -1,165 +1,241 @@
-import React from 'react'
-import heroPattern from './assets/hero-pattern.svg'
+import React, { useState, useEffect } from 'react'
 
 function App() {
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem('theme')
+    return saved ? saved === 'dark' : true
+  })
+
+  useEffect(() => {
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+  }, [isDark])
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header met geel kroontje SVG logo */}
-      <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center space-x-3">
-            <img src="/crown-logo.svg" alt="Promotiemeester Crown" className="w-12 h-12" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-brand-yellow to-crown-yellow bg-clip-text text-transparent">
+    <div className={`relative h-screen w-screen overflow-hidden transition-all duration-700 ${
+      isDark
+        ? 'bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950'
+        : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'
+    }`}>
+      {/* Animated Background Effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Gradient Orbs */}
+        <div className={`absolute top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full blur-3xl animate-pulse transition-all duration-700 ${
+          isDark
+            ? 'bg-gradient-to-r from-brand-yellow/30 to-crown-yellow/20'
+            : 'bg-gradient-to-r from-yellow-300/40 to-orange-300/30'
+        }`}></div>
+        <div className={`absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full blur-3xl animate-pulse delay-1000 transition-all duration-700 ${
+          isDark
+            ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20'
+            : 'bg-gradient-to-r from-blue-400/30 to-purple-400/30'
+        }`}></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-3xl animate-pulse delay-500 transition-all duration-700 ${
+          isDark
+            ? 'bg-gradient-to-r from-purple-500/10 to-pink-500/10'
+            : 'bg-gradient-to-r from-purple-300/20 to-pink-300/20'
+        }`}></div>
+
+        {/* Grid Pattern Overlay */}
+        <div className={`absolute inset-0 bg-[size:64px_64px] transition-opacity duration-700 ${
+          isDark
+            ? 'bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] opacity-100'
+            : 'bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] opacity-50'
+        }`}></div>
+
+        {/* Radial Gradient Vignette */}
+        <div className={`absolute inset-0 transition-opacity duration-700 ${
+          isDark
+            ? 'bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] opacity-100'
+            : 'bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.05)_100%)] opacity-100'
+        }`}></div>
+      </div>
+
+      {/* Content Layer */}
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Logo & Title with Glass Effect + Theme Toggle */}
+        <div className="flex items-center justify-between pt-8 pb-6 px-8 max-w-7xl mx-auto w-full">
+          <div className={`flex items-center space-x-3 backdrop-blur-xl px-6 py-3 rounded-2xl shadow-2xl transition-all duration-500 ${
+            isDark
+              ? 'bg-white/5 border border-white/10'
+              : 'bg-white/70 border border-gray-200/50'
+          }`}>
+            <img src="/crown-logo.svg" alt="Promotiemeester Crown" className="w-10 h-10 drop-shadow-[0_0_8px_rgba(253,185,19,0.5)]" />
+            <span className="text-2xl font-bold bg-gradient-to-r from-brand-yellow via-crown-yellow to-yellow-300 bg-clip-text text-transparent drop-shadow-lg">
               Promotiemeester
             </span>
           </div>
-        </div>
-      </header>
 
-      {/* Hero Section met achtergrond */}
-      <section
-        className="pt-32 pb-20 px-6 relative overflow-hidden"
-        style={{
-          backgroundImage: `url(${heroPattern})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        <div className="container mx-auto text-center max-w-4xl relative z-10">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Jouw online succes begint hier
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-12">
-            Domineer zoekresultaten en social media met onze geavanceerde AI-tools
-          </p>
-        </div>
-      </section>
-
-      {/* Products Section */}
-      <section className="py-16 px-6 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12">
-
-            {/* SEO Meester Product */}
-            <div className="product-card">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 aspect-video flex items-center justify-center overflow-hidden">
-                <img
-                  src="/seo-meester-screenshot.png"
-                  alt="SEO Meester Dashboard - AI-gedreven SEO optimalisatie"
-                  className="w-full h-full object-contain rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="text-3xl font-bold mb-4">SEO Meester</h3>
-                <p className="text-gray-600 mb-6 text-lg">
-                  Kom bovenaan in AI-zoekmachines zoals ChatGPT, Perplexity en Google.
-                  Onze AI analyseert en optimaliseert je content voor maximale zichtbaarheid.
-                </p>
-                <ul className="space-y-3 mb-8 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>AI-geoptimaliseerde content strategie</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>Real-time ranking monitoring</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>Geautomatiseerde keyword research</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>Concurrent analyse & insights</span>
-                  </li>
-                </ul>
-                <button className="btn-primary w-full">
-                  Start met SEO Meester →
-                </button>
-              </div>
+          {/* Theme Toggle */}
+          <button
+            onClick={() => setIsDark(!isDark)}
+            className={`relative w-16 h-8 rounded-full backdrop-blur-xl transition-all duration-500 shadow-lg ${
+              isDark
+                ? 'bg-slate-700/50 border border-white/10'
+                : 'bg-blue-200/50 border border-gray-300/50'
+            }`}
+            aria-label="Toggle theme"
+          >
+            <div className={`absolute top-1 w-6 h-6 rounded-full transition-all duration-500 flex items-center justify-center ${
+              isDark
+                ? 'left-1 bg-gradient-to-br from-slate-800 to-slate-900 shadow-lg'
+                : 'left-9 bg-gradient-to-br from-yellow-400 to-orange-400 shadow-lg'
+            }`}>
+              {isDark ? (
+                <span className="text-xs">🌙</span>
+              ) : (
+                <span className="text-xs">☀️</span>
+              )}
             </div>
-
-            {/* Social Media Meester Product */}
-            <div className="product-card">
-              <div className="bg-gradient-to-br from-pink-50 to-purple-100 p-4 aspect-video flex items-center justify-center overflow-hidden">
-                <img
-                  src="/social-media-meester-screenshot.png"
-                  alt="Social Media Meester Dashboard - Intelligente social promotie"
-                  className="w-full h-full object-contain rounded-lg shadow-lg"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="text-3xl font-bold mb-4">Social Media Meester</h3>
-                <p className="text-gray-600 mb-6 text-lg">
-                  Automatiseer je social media strategie met AI. Plan, creëer en publiceer
-                  content die resoneert met je doelgroep op alle platforms.
-                </p>
-                <ul className="space-y-3 mb-8 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>AI content generatie & planning</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>Multi-platform scheduling</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>Engagement tracking & analytics</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-crown-yellow mr-2">✓</span>
-                    <span>Trend detection & recommendations</span>
-                  </li>
-                </ul>
-                <button className="btn-primary w-full">
-                  Start met Social Media Meester →
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 px-6 bg-gradient-to-r from-brand-yellow to-crown-yellow relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="container mx-auto text-center max-w-3xl relative z-10">
-          <img src="/crown-logo.svg" alt="Crown" className="w-20 h-20 mx-auto mb-6" />
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-            Klaar om te domineren?
-          </h2>
-          <p className="text-xl text-gray-800 mb-8">
-            Join duizenden ondernemers die hun online aanwezigheid hebben getransformeerd
-          </p>
-          <button className="bg-gray-900 text-white px-12 py-5 rounded-lg text-xl font-bold
-                           shadow-2xl hover:bg-gray-800 transform hover:scale-105 transition-all duration-200">
-            Start Gratis Trial →
           </button>
         </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-12 px-6">
-        <div className="container mx-auto text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <img src="/crown-logo.svg" alt="Crown" className="w-10 h-10" />
-            <span className="text-2xl font-bold text-white">Promotiemeester</span>
+        {/* Main Content - Centered */}
+        <div className="flex-1 flex items-center justify-center px-8">
+          <div className="max-w-7xl w-full">
+            {/* Two Product Cards with Glass Morphism */}
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+
+              {/* SEO Meester Product */}
+              <div className={`group relative backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] ${
+                isDark
+                  ? 'bg-white/10 border border-white/20 hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] hover:border-blue-400/50'
+                  : 'bg-white/70 border border-gray-200/50 hover:shadow-[0_0_40px_rgba(59,130,246,0.2)] hover:border-blue-400/70'
+              }`}>
+                {/* Card Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+                <div className="relative z-10">
+                  <div className={`p-4 aspect-video flex items-center justify-center overflow-hidden backdrop-blur-sm transition-all duration-500 ${
+                    isDark
+                      ? 'bg-gradient-to-br from-blue-500/20 to-indigo-600/30'
+                      : 'bg-gradient-to-br from-blue-100 to-indigo-200'
+                  }`}>
+                    <img
+                      src="/seo-meester-screenshot.png"
+                      alt="SEO Meester Dashboard"
+                      className="w-full h-full object-contain rounded-lg shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r bg-clip-text text-transparent transition-all duration-500 ${
+                      isDark
+                        ? 'from-blue-300 to-cyan-300'
+                        : 'from-blue-600 to-cyan-600'
+                    }`}>SEO Meester</h3>
+                    <p className={`mb-4 text-sm leading-relaxed transition-colors duration-500 ${
+                      isDark ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      Kom bovenaan in AI-zoekmachines zoals ChatGPT, Perplexity en Google.
+                    </p>
+                    <ul className={`space-y-2 mb-6 text-sm transition-colors duration-500 ${
+                      isDark ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>AI-geoptimaliseerde content strategie</span>
+                      </li>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>Real-time ranking monitoring</span>
+                      </li>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>Geautomatiseerde keyword research</span>
+                      </li>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>Concurrent analyse & insights</span>
+                      </li>
+                    </ul>
+                    <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transform hover:-translate-y-1 transition-all duration-300 hover:from-blue-500 hover:to-cyan-500">
+                      Start met SEO Meester →
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Media Meester Product */}
+              <div className={`group relative backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:scale-[1.02] ${
+                isDark
+                  ? 'bg-white/10 border border-white/20 hover:shadow-[0_0_40px_rgba(236,72,153,0.3)] hover:border-pink-400/50'
+                  : 'bg-white/70 border border-gray-200/50 hover:shadow-[0_0_40px_rgba(236,72,153,0.2)] hover:border-pink-400/70'
+              }`}>
+                {/* Card Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 via-purple-500/0 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+                <div className="relative z-10">
+                  <div className={`p-4 aspect-video flex items-center justify-center overflow-hidden backdrop-blur-sm transition-all duration-500 ${
+                    isDark
+                      ? 'bg-gradient-to-br from-pink-500/20 to-purple-600/30'
+                      : 'bg-gradient-to-br from-pink-100 to-purple-200'
+                  }`}>
+                    <img
+                      src="/social-media-meester-screenshot.png"
+                      alt="Social Media Meester Dashboard"
+                      className="w-full h-full object-contain rounded-lg shadow-2xl transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className={`text-2xl font-bold mb-3 bg-gradient-to-r bg-clip-text text-transparent transition-all duration-500 ${
+                      isDark
+                        ? 'from-pink-300 to-purple-300'
+                        : 'from-pink-600 to-purple-600'
+                    }`}>Social Media Meester</h3>
+                    <p className={`mb-4 text-sm leading-relaxed transition-colors duration-500 ${
+                      isDark ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      Automatiseer je social media strategie met AI. Plan, creëer en publiceer content.
+                    </p>
+                    <ul className={`space-y-2 mb-6 text-sm transition-colors duration-500 ${
+                      isDark ? 'text-gray-300' : 'text-gray-700'
+                    }`}>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>AI content generatie & planning</span>
+                      </li>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>Multi-platform scheduling</span>
+                      </li>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>Engagement tracking & analytics</span>
+                      </li>
+                      <li className="flex items-start transition-all duration-300 hover:translate-x-1">
+                        <span className="text-crown-yellow mr-2 drop-shadow-[0_0_4px_rgba(255,215,0,0.5)]">✓</span>
+                        <span>Trend detection & recommendations</span>
+                      </li>
+                    </ul>
+                    <button className="w-full px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] transform hover:-translate-y-1 transition-all duration-300 hover:from-pink-500 hover:to-purple-500">
+                      Start met Social Media Meester →
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <p className="text-gray-400 mb-6">
-            SEO & Social Media Excellence
-          </p>
-          <p className="text-sm text-gray-500">
-            © 2026 Promotiemeester. Alle rechten voorbehouden.
-          </p>
         </div>
-      </footer>
+
+        {/* Footer with Glass Effect */}
+        <div className="text-center py-4">
+          <div className={`inline-block backdrop-blur-xl px-6 py-2 rounded-full transition-all duration-500 ${
+            isDark
+              ? 'bg-white/5 border border-white/10'
+              : 'bg-white/50 border border-gray-200/50'
+          }`}>
+            <p className={`text-sm transition-colors duration-500 ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>© 2026 Promotiemeester. Alle rechten voorbehouden.</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
