@@ -42,12 +42,12 @@ function App() {
 
             {/* SEO Meester Product */}
             <div className="product-card">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 aspect-video flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">🔍</div>
-                  <div className="text-2xl font-bold text-gray-700">SEO Meester Dashboard</div>
-                  <div className="text-gray-500 mt-2">AI-gedreven SEO optimalisatie</div>
-                </div>
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 aspect-video flex items-center justify-center overflow-hidden">
+                <img
+                  src="/seo-meester-screenshot.png"
+                  alt="SEO Meester Dashboard - AI-gedreven SEO optimalisatie"
+                  className="w-full h-full object-contain rounded-lg shadow-lg"
+                />
               </div>
               <div className="p-8">
                 <h3 className="text-3xl font-bold mb-4">SEO Meester</h3>
@@ -81,12 +81,12 @@ function App() {
 
             {/* Social Media Meester Product */}
             <div className="product-card">
-              <div className="bg-gradient-to-br from-pink-50 to-purple-100 p-8 aspect-video flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📱</div>
-                  <div className="text-2xl font-bold text-gray-700">Social Media Dashboard</div>
-                  <div className="text-gray-500 mt-2">Intelligente social promotie</div>
-                </div>
+              <div className="bg-gradient-to-br from-pink-50 to-purple-100 p-4 aspect-video flex items-center justify-center overflow-hidden">
+                <img
+                  src="/social-media-meester-screenshot.png"
+                  alt="Social Media Meester Dashboard - Intelligente social promotie"
+                  className="w-full h-full object-contain rounded-lg shadow-lg"
+                />
               </div>
               <div className="p-8">
                 <h3 className="text-3xl font-bold mb-4">Social Media Meester</h3>
