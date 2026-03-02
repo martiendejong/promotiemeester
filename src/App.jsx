@@ -1,13 +1,14 @@
 import React from 'react'
+import heroPattern from './assets/hero-pattern.svg'
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
-      {/* Header met geel kroontje */}
+      {/* Header met geel kroontje SVG logo */}
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center space-x-3">
-            <div className="crown-icon">👑</div>
+            <img src="/crown-logo.svg" alt="Promotiemeester Crown" className="w-12 h-12" />
             <span className="text-2xl font-bold bg-gradient-to-r from-brand-yellow to-crown-yellow bg-clip-text text-transparent">
               Promotiemeester
             </span>
@@ -15,9 +16,16 @@ function App() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="container mx-auto text-center max-w-4xl">
+      {/* Hero Section met achtergrond */}
+      <section
+        className="pt-32 pb-20 px-6 relative overflow-hidden"
+        style={{
+          backgroundImage: `url(${heroPattern})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
+        <div className="container mx-auto text-center max-w-4xl relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
             Jouw online succes begint hier
           </h1>
@@ -115,9 +123,15 @@ function App() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 px-6 bg-gradient-to-r from-brand-yellow to-crown-yellow">
-        <div className="container mx-auto text-center max-w-3xl">
-          <div className="text-6xl mb-6">👑</div>
+      <section className="py-20 px-6 bg-gradient-to-r from-brand-yellow to-crown-yellow relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto text-center max-w-3xl relative z-10">
+          <img src="/crown-logo.svg" alt="Crown" className="w-20 h-20 mx-auto mb-6" />
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
             Klaar om te domineren?
           </h2>
@@ -135,7 +149,7 @@ function App() {
       <footer className="bg-gray-900 text-gray-300 py-12 px-6">
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="text-4xl">👑</div>
+            <img src="/crown-logo.svg" alt="Crown" className="w-10 h-10" />
             <span className="text-2xl font-bold text-white">Promotiemeester</span>
           </div>
           <p className="text-gray-400 mb-6">
