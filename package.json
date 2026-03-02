@@ -1,0 +1,32 @@
+{
+  "name": "promotiemeester",
+  "version": "1.0.0",
+  "description": "Landing page voor promotiemeester.nl met SEO Meester en Social Media Meester producten",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martiendejong/promotiemeester.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/martiendejong/promotiemeester/issues"
+  },
+  "homepage": "https://github.com/martiendejong/promotiemeester#readme",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^3.4.19",
+    "vite": "^7.3.1"
+  }
+}
