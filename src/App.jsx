@@ -116,9 +116,9 @@ function App() {
           {/* Centered Logo */}
           <div className="flex items-center justify-center">
             <img
-              src="/promotiemeester.png"
+              src={isDark ? '/promotiemeester_white.png' : '/promotiemeester.png'}
               alt="PromotieMeester"
-              className="h-24 w-auto drop-shadow-lg"
+              className="h-24 w-auto drop-shadow-lg transition-all duration-700"
             />
           </div>
 
